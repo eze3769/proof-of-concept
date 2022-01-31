@@ -6,7 +6,13 @@ import Typography from '@mui/material/Typography';
 import { Avatar, Box, Grid } from '@mui/material';
 import LogoutButton from '../../hoc/Aut0/LogoutButton';
 
-function UserCard({ user }: { user: any }) {
+type User = {
+  name?: string;
+  picture?: string;
+  email?: string;
+};
+
+function UserCard({ user }: { user: User }): JSX.Element {
   return (
     <Box sx={{ mx: 'auto', maxWidth: '300px', boxShadow: 3 }}>
       <Card sx={{ minWidth: 275 }}>
