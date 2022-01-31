@@ -1,0 +1,30 @@
+
+.crop-container {
+  width: 100%;
+  height: 50vh;
+  position:relative;
+  bottom: 80px;
+}
+.reactEasyCrop_CropArea{
+  width: 90%;
+}
+.rotated {
+  transform: rotate(90deg);
+}
+
+.left,
+.right {
+  padding: 15px;
+}
+.controls {
+  box-sizing: border-box;
+  position: relative;
+  bottom: 0;
+  left: 0%;
+  width: 100%;
+  padding: 0 16px;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
