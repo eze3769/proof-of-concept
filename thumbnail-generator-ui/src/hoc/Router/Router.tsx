@@ -7,6 +7,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import Profile from '../../containers/Profile/Profile';
 import Checkout from '../../components/Checkout/Checkout';
 import NotFound from '../../components/NotFound/NotFound';
+import Footer from '../../components/Footer/Footer';
 
 function Router() {
   return (
@@ -26,6 +27,7 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
