@@ -24,7 +24,7 @@ function UserCard({ user }: { user: any }) {
             sx={{ width: 56, height: 56, mx: 'auto', my: 2 }}
           />
           <Typography variant="h5" component="div" sx={{ textAlign: 'center' }}>
-            {user?.name}
+            {user.name}
           </Typography>
           <Typography variant="body2" sx={{ textAlign: 'center' }}>
             {user.email}
