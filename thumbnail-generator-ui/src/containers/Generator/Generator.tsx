@@ -26,7 +26,7 @@ function Generator() {
   };
 
   return (
-    <Container sx={{ pb: 35 }}>
+    <Container sx={{ minHeight: '100vh' }}>
       {isLoading.value ? (
         <Grid
           container
