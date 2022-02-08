@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
   Grid,
@@ -10,9 +9,8 @@ import {
   Box,
 } from '@mui/material';
 import { CropData } from '../CropArea/CropArea';
-import request from '../../api/apiCalls';
-import { saveData } from '../../features/checkoutData/checkoutDataSlice';
 import { isLoading } from '../../features/responseWait/responseWaitSlice';
+import { fetchData } from '../../features/checkoutData/checkoutDataSlice';
 
 const style = {
   position: 'absolute' as const,
@@ -30,12 +28,6 @@ type Props = {
   workImage: string;
   cropData: CropData;
 };
-interface HttpDataResponse {
-  data: {
-    id: string;
-    url: string;
-  };
-}
 
 function CheckoutModal({ workImage, cropData }: Props) {
   const [open, setOpen] = useState(false);
@@ -43,22 +35,15 @@ function CheckoutModal({ workImage, cropData }: Props) {
   const [height, setHeight] = useState(100);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const saveHandler = async () => {
+  const saveHandler = () => {
     dispatch(isLoading());
-    let response: HttpDataResponse;
-    try {
-      setOpen(false);
-      const size = { width, height };
-      response = await request(workImage as string, cropData, size);
-      dispatch(saveData({ id: response.data.id, url: response.data.url }));
-      navigate(`/checkout/${response.data.id}`);
-    } catch (error) {
-      // console.warn('error', error);
-    }
+    setOpen(false);
+    const size = { width, height };
+    dispatch(fetchData({ workImage, cropData, size }));
   };
+
   return (
     <>
       <Button onClick={handleOpen}>Convert</Button>

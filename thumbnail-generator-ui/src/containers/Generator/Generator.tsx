@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   CircularProgress,
@@ -8,6 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import WebCamComponent from '../../components/WebCamComponent.tsx/WebCamComponent';
 import FileUploaderContainer from '../FileUploaderContainer/FileUploaderContainer';
 import { RootState } from '../../app/store';
@@ -21,12 +22,23 @@ function Generator() {
   );
   const isLoading = useSelector((state: RootState) => state.responseWait);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const id = useSelector((state: RootState) => state.checkoutData.id);
   const handleCamera = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(cameraToggle({ value: event.target.checked }));
   };
+  const redirect = useSelector(
+    (state: RootState) => state.checkoutData.redirect
+  );
+
+  useEffect(() => {
+    if (redirect) {
+      navigate(`/checkout/${id}`);
+    }
+  }, [redirect]);
 
   return (
-    <Container>
+    <Container sx={{ minHeight: '100vh' }}>
       {isLoading.value ? (
         <Grid
           container
@@ -35,7 +47,7 @@ function Generator() {
           <CircularProgress />
         </Grid>
       ) : (
-        <Container sx={{ minHeight: '100vh' }}>
+        <Container>
           <Typography variant="h2" component="h1">
             Let&apos;s create a thumbnail!
           </Typography>
