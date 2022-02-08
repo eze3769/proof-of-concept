@@ -35,7 +35,7 @@ function Generator() {
           <CircularProgress />
         </Grid>
       ) : (
-        <Container>
+        <Container sx={{ minHeight: '100vh' }}>
           <Typography variant="h2" component="h1">
             Let&apos;s create a thumbnail!
           </Typography>

@@ -35,7 +35,7 @@ function Checkout() {
   };
 
   return (
-    <Container>
+    <Container sx={{ minHeight: '100vh' }}>
       {image.url ? (
         <Box
           container

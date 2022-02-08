@@ -6,7 +6,7 @@ import UserCard from '../../components/UserCard/UserCard';
 function Profile() {
   const { user } = useAuth0();
   return (
-    <Container sx={{ mt: 8 }}>
+    <Container sx={{ minHeight: '100vh', mt: 8 }}>
       {user ? <UserCard user={user} /> : <CircularProgress />}
     </Container>
   );
