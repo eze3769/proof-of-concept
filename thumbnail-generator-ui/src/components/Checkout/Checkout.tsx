@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loaded } from '../../features/responseWait/responseWaitSlice';
 import { RootState } from '../../app/store';
+import { stopRedirect } from '../../features/checkoutData/checkoutDataSlice';
 
 function Checkout() {
   const [copied, setCopied] = useState(false);
@@ -23,8 +24,10 @@ function Checkout() {
   const downloadHandler = () => {
     FileSaver.saveAs(image.url, 'image.jpg');
   };
+
   useEffect(() => {
     if (image && isLoaded) {
+      dispatch(stopRedirect());
       dispatch(loaded());
     }
   }, [isLoaded, image]);
